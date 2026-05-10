@@ -1,67 +1,133 @@
-import tkinter as tk
-from tkinter import messagebox
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-# Criando janela
-janela = tk.Tk()
-janela.title("Dia das Mães")
-janela.geometry("600x400")
-janela.configure(bg="#ffd6e7")
+<title>Feliz Dia das Mães</title>
 
-# Texto principal
-texto = tk.Label(
-    janela,
-    text="Mãe, resgate seu presente 🎁",
-    font=("Arial", 22, "bold"),
-    bg="#ffd6e7",
-    fg="#7a284b"
-)
+<style>
 
-texto.pack(pady=50)
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e7,#fff0f5);
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+}
 
-# Função do botão
-def resgatar():
-    messagebox.showinfo(
-        "Resgatado!",
-        "Eu sabia que você preferia o meu abraço!\n\n"
-        "💖 Feliz Dia das Mães! 💖\n"
-        "Te amo!"
-    )
+/* Card */
+.card{
+    width:90%;
+    max-width:400px;
+    background:white;
+    padding:40px 25px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    z-index:10;
+}
 
-# Mudança ao passar o mouse
-def mudar_texto(event):
-    btn_presente.config(
-        text="Um beijo e abraço 💕",
-        bg="#ff8fab"
-    )
+h1{
+    color:#c2185b;
+    margin-bottom:20px;
+    font-size:32px;
+}
 
-# Voltar ao normal
-def voltar_texto(event):
-    btn_presente.config(
-        text="Lavo a louça por 1 semana",
-        bg="#ff4d8d"
-    )
+p{
+    font-size:18px;
+    color:#555;
+    margin-bottom:30px;
+}
 
-# Botão
-btn_presente = tk.Button(
-    janela,
-    text="Lavo a louça por 1 semana",
-    font=("Arial", 14, "bold"),
-    bg="#ff4d8d",
-    fg="white",
-    activebackground="#ff8fab",
-    activeforeground="white",
-    padx=20,
-    pady=10,
-    relief="flat",
-    cursor="hand2",
-    command=resgatar
-)
+/* Botão */
+#btn{
+    width:100%;
+    border:none;
+    padding:18px;
+    border-radius:15px;
+    background:#ff4d8d;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-btn_presente.pack(pady=20)
+#btn:active{
+    transform:scale(0.96);
+}
 
-# Eventos do mouse
-btn_presente.bind("<Enter>", mudar_texto)
-btn_presente.bind("<Leave>", voltar_texto)
+/* Mensagem escondida */
+#mensagem{
+    display:none;
+    margin-top:25px;
+    font-size:20px;
+    color:#c2185b;
+    font-weight:bold;
+    animation:fade 0.6s;
+}
 
-# Rodando aplicação
-janela.mainloop()
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Feliz Dia das Mães 💖</h1>
+
+    <p>
+        Mãe, clique no botão para resgatar seu presente 🎁
+    </p>
+
+    <button id="btn">
+        Lavo a louça por 1 semana
+    </button>
+
+    <div id="mensagem">
+        💕 Eu sabia que você preferia meu abraço! <br><br>
+        Feliz Dia das Mães! <br>
+        Te amo 💖
+    </div>
+
+</div>
+
+<script>
+
+const btn = document.getElementById("btn");
+const mensagem = document.getElementById("mensagem");
+
+btn.addEventListener("click", function(){
+
+    // muda texto do botão
+    btn.innerHTML = "Um beijo e abraço 💕";
+
+    // muda cor
+    btn.style.background = "#c2185b";
+
+    // mostra mensagem
+    mensagem.style.display = "block";
+
+});
+
+</script>
+
+</body>
+</html>
